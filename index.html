@@ -129,16 +129,14 @@
     });
 
     function registrarClique(index) {
-      clicks.push(index);
-      if (clicks.length === 7) {
-        if (JSON.stringify(clicks) === JSON.stringify(ordemCorreta)) {
-          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // link final
-        } else {
-          alert("Ordem incorreta! Tente novamente.");
-          clicks = [];
-        }
+    clicks.push(index);
+    if (clicks.length === 7) {
+      if (JSON.stringify(clicks) === JSON.stringify(ordemCorreta)) {
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       }
+      clicks = []; // reseta sempre, mesmo se errado
     }
+  }
   </script>
 </body>
 </html>
