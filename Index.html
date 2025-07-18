@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7 Maravilhas do Mundo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #007bff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content h3 {
+      margin-top: 0;
+    }
+    .card-content p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 0 0 12px 12px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>As 7 Maravilhas do Mundo Moderno</h1>
+    <p>Clique nas maravilhas na ordem certa para desbloquear o destino secreto.</p>
+  </header>
+  <main class="container" id="cards-container">
+    <!-- Cards inseridos dinamicamente -->
+  </main>
+
+  <script>
+    const maravs = [
+      {
+        nome: "Coliseu - Itália",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/d/de/Colosseo_2020.jpg",
+        texto: "O Coliseu é um anfiteatro oval no centro da cidade de Roma. É um dos maiores exemplos da arquitetura romana."
+      },
+      {
+        nome: "Petra - Jordânia",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Al_Khazneh_Petra_Edit_2.jpg",
+        texto: "Petra é uma cidade arqueológica famosa por sua arquitetura esculpida nas rochas e por seu sistema de canais de água."
+      },
+      {
+        nome: "Cristo Redentor - Brasil",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/1/17/Cristo_Redentor_-_Rio_de_Janeiro%2C_Brasil.jpg",
+        texto: "O Cristo Redentor é uma estátua art déco de Jesus Cristo localizada no topo do Morro do Corcovado."
+      },
+      {
+        nome: "Chichén Itzá - México",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Chichen_Itza_3.jpg",
+        texto: "Chichén Itzá foi uma grande cidade maia localizada na Península de Yucatán, famosa por suas pirâmides."
+      },
+      {
+        nome: "Machu Picchu - Peru",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Machu_Picchu%2C_Peru.jpg",
+        texto: "Machu Picchu é uma antiga cidade inca localizada nas montanhas dos Andes, conhecida por sua impressionante engenharia."
+      },
+      {
+        nome: "Taj Mahal - Índia",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg",
+        texto: "O Taj Mahal é um mausoléu de mármore branco construído por Shah Jahan em memória de sua esposa."
+      },
+      {
+        nome: "A Muralha da China",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mutianyu-Great_Wall.jpg",
+        texto: "A Grande Muralha da China é uma série de fortificações feitas de pedra, tijolo e outros materiais."
+      }
+    ];
+
+    const ordemCorreta = [2, 5, 0, 1, 6, 4, 3]; // índice dos cliques corretos
+    let clicks = [];
+
+    const container = document.getElementById("cards-container");
+
+    maravs.forEach((m, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${m.imagem}" alt="${m.nome}" />
+        <div class="card-content">
+          <h3>${m.nome}</h3>
+          <p>${m.texto}</p>
+        </div>
+        <button onclick="registrarClique(${i})">Quero visitar!</button>
+      `;
+      container.appendChild(card);
+    });
+
+    function registrarClique(index) {
+      clicks.push(index);
+      if (clicks.length === 7) {
+        if (JSON.stringify(clicks) === JSON.stringify(ordemCorreta)) {
+          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // link final
+        } else {
+          alert("Ordem incorreta! Tente novamente.");
+          clicks = [];
+        }
+      }
+    }
+  </script>
+</body>
+</html>
